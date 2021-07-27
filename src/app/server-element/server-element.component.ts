@@ -4,6 +4,7 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
+  ContentChild,
   DoCheck,
   ElementRef,
   Input,
@@ -30,7 +31,8 @@ export class ServerElementComponent
     AfterContentChecked,
     AfterViewInit,
     AfterViewChecked,
-    OnDestroy
+    OnDestroy,
+    ContentChild
 {
   @Input('srvElement') element: {
     type: string;
@@ -40,9 +42,29 @@ export class ServerElementComponent
   @Input() name: string;
   @ViewChild('header', { static: true }) header: ElementRef;
 
+  /**
+   * Get's initialized on ngAfterContentInit hook
+   *
+   */
+
+  @ContentChild('contentParagraph', { static: true }) paragraph: ElementRef;
+
   constructor() {
     console.log('Constructor called!');
   }
+
+  /**
+   * Implementation for @ContentChild
+   *
+   */
+
+  descendants: boolean;
+  emitDistinctChangesOnly: boolean;
+  first: boolean;
+  read: any;
+  isViewQuery: boolean;
+  selector: any;
+  static?: boolean;
 
   /**
    * Gets called on initialization of component
@@ -51,7 +73,10 @@ export class ServerElementComponent
 
   ngOnInit(): void {
     console.log('ngOnInit called!');
-    // console.log('Text content: ' + this.header.nativeElement.textContent);
+    console.log('Text content: ' + this.header.nativeElement.textContent);
+    console.log(
+      'Text Content of paragraph: ' + this.paragraph.nativeElement.textContent
+    );
   }
 
   /**
@@ -82,6 +107,9 @@ export class ServerElementComponent
 
   ngAfterContentInit(): void {
     console.log('ngAfterContentInit called!');
+    console.log(
+      'Text Content of paragraph: ' + this.paragraph.nativeElement.textContent
+    );
   }
 
   /**
