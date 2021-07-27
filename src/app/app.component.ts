@@ -28,4 +28,22 @@ export class AppComponent {
       content: blueprintData.serverContent,
     });
   }
+
+  /**
+   * Get's called after the first element has been changed
+   *
+   */
+
+  onChangeFirst() {
+    this.serverElements[0].name = 'Changed!';
+  }
+
+  /**
+   * Get's called after the first element has been destroyed
+   *
+   */
+
+  onDestroyFirst() {
+    this.serverElements.splice(0, 1);
+  }
 }
