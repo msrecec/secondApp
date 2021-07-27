@@ -5,11 +5,13 @@ import {
   AfterViewInit,
   Component,
   DoCheck,
+  ElementRef,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
   SimpleChanges,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 
@@ -36,64 +38,20 @@ export class ServerElementComponent
     content: string;
   };
   @Input() name: string;
+  @ViewChild('header', { static: true }) header: ElementRef;
 
   constructor() {
     console.log('Constructor called!');
   }
 
   /**
-   * Get's called before the component has been destroyed
+   * Gets called on initialization of component
    *
    */
 
-  ngOnDestroy(): void {
-    console.log('ngOnDestroy called!');
-  }
-
-  /**
-   * Get's called after the content has been checked
-   *
-   */
-
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit called!');
-  }
-
-  /**
-   * Get's called after the view has been initialized
-   *
-   */
-
-  ngAfterViewChecked(): void {
-    console.log('ngAfterViewChecked called!');
-  }
-
-  /**
-   * Gets called after every change detection cycle
-   *
-   */
-
-  ngAfterContentChecked(): void {
-    console.log('ngAfterContentChecked called!');
-  }
-
-  /**
-   * Get's called when content is projected into a component for the first time (init)
-   * via <ng-content></ng-content>
-   *
-   */
-
-  ngAfterContentInit(): void {
-    console.log('ngAfterContentInit called!');
-  }
-
-  /**
-   * Gets called when ever Angular checks for changes
-   *
-   */
-
-  ngDoCheck(): void {
-    console.log('ngDoCheck called!');
+  ngOnInit(): void {
+    console.log('ngOnInit called!');
+    // console.log('Text content: ' + this.header.nativeElement.textContent);
   }
 
   /**
@@ -108,11 +66,58 @@ export class ServerElementComponent
   }
 
   /**
-   * Gets called on initialization of component
+   * Gets called when ever Angular checks for changes
    *
    */
 
-  ngOnInit(): void {
-    console.log('ngOnInit called!');
+  ngDoCheck(): void {
+    console.log('ngDoCheck called!');
+  }
+
+  /**
+   * Get's called when content is projected into a component for the first time (init)
+   * via <ng-content></ng-content>
+   *
+   */
+
+  ngAfterContentInit(): void {
+    console.log('ngAfterContentInit called!');
+  }
+
+  /**
+   * Gets called after every change detection cycle
+   *
+   */
+
+  ngAfterContentChecked(): void {
+    console.log('ngAfterContentChecked called!');
+  }
+
+  /**
+   * Get's called after the view has been initialized
+   *
+   */
+
+  ngAfterViewChecked(): void {
+    console.log('ngAfterViewChecked called!');
+  }
+
+  /**
+   * Get's called after the content has been checked
+   *
+   */
+
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit called!');
+    console.log('Text content: ' + this.header.nativeElement.textContent);
+  }
+
+  /**
+   * Get's called before the component has been destroyed
+   *
+   */
+
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy called!');
   }
 }
